@@ -1,0 +1,52 @@
+img.responsive-img {
+    height: 127px!important;
+    padding: 6px;
+}
+
+#generateCSV {
+    height: 15%;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#numRow {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+table.striped {
+    margin-top: 5px;
+}
+
+@keyframes changefontsize {
+    from {
+      font-size: 20px;
+    }
+  
+    to {
+      font-size: 25px;
+    }
+  }
+  
+  .animation {
+    animation-duration: 0.3s;
+    animation-name: changefontsize;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+
+  table th {
+      line-height:80px!important;
+  }
+
+  select {
+      width: 180px;
+  }
+
+  .div-option ul {
+    width: 220px!important;
+  }
+
+  .progress {
+    margin-bottom: 0;
+  }

@@ -1,0 +1,667 @@
+<!DOCTYPE html">
+<html>
+<head>
+    <title>CSV generate</title>
+    <link rel="stylesheet" href="materialize/css/materialize.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.csv.min.js"></script>
+    <script src="materialize/js/materialize.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            let shortText = Array();
+            let nomalText = Array();
+            let longText = Array();
+            let categories = Array();
+
+            shortText = [
+                "Qủa Acai (Acai berry)",
+                "Qủa dâu Aronia",
+                "Billberries (Qủa việt quất dại)",
+                "Qủa mâm xôi",
+                "Qủa phúc bồn tử (đen và đỏ)",
+                "Qủa cơm cháy đen (Black Elderberries)",
+                "Qủa nam việt quất",
+                "Lingonberries (Cowberries)",
+                "Quả maqui",
+                "Qủa Acerola Cherries",
+                "Qủa bơ",
+                "Qủa cam đỏ (Blood orange)",
+                "Qủa Camu Camu",
+                "Qủa thanh long",
+                "Qủa cam sành",
+                "Qủa măng cụt",
+                "Chuối Manzano",
+                "Qủa chanh dây",
+                "Qủa lựu",
+                "Mận (Mận khô)",
+                "Nho tím",
+                "Qủa mận tím (Queen Garnet Plum)",
+                "Qủa chôm chôm",
+                "Lúa mạch (chưa lột màng)",
+                "Đậu đen",
+                "Ngũ cốc kiều mạch",
+                "Đậu Cannellini và Đậu trắng",
+                "Ngũ cốc Kaniwa",
+                "Đậu lima",
+                "quinoa",
+                "Đậu đỏ",
+                "Củ cải đỏ / đen",
+                "Rễ cây ngưu bàng(Burdock Root (Gobo)",
+                "Tỏi",
+                "Cà rốt màu tím",
+                "Hành tây đỏ",
+                "Cúc vu (Jerusalem atisô)",
+                "Củ nghệ",
+                "Oca root",
+                "Rau Arugula (Xà lách xoăn)",
+                "Cải xoăn đen (Black Kale)",
+                "Bắp cải Brucxen",
+                "Cải xanh",
+                "Mầm bông cải xanh",
+                "Cải rổ (Collard Greens)",
+                "Cải cúc (Dandelion Greens)",
+                "Cải xoong cạn (Cress garden)",
+                "Tần ô",
+                "Cải quăn (Kale)",
+                "Mache (Cải giấy bồi ?)",
+                "Rau mầm",
+                "Rau mù tạt xanh",
+                "Súp lơ trắng/tím",
+                "Mầm củ cải",
+                "Bắp cải đỏ",
+                "Bắp cải nhăn (Savoy Cabbage)",
+                "Rau bina",
+                "Cải cầu vồng (Swiss chard)",
+                "Hạt hạnh nhân",
+                "Hạt chia",
+                "Hạt nho",
+                "Hạt Sacha Inchi",
+                "Qủa óc chó",
+                "Nhân hoa atison",
+                "Mật ong hoa kiều mạch",
+                "Sô cô la đen",
+                "Lá nho",
+                "Bột trà xanh Matcha",
+                "Bột lá Moringa",
+                "Nấm",
+                "Mật thông",
+                "Bột tảo xanh Spirulina",
+                " Bánh bơ trứng Richy",
+                " Bánh quy LU",
+                " Bánh quy bơ thập cẩm kẹp kem Cosy",
+                " Bánh quy bơ O&T Royal Danish",
+                " Bánh bông lan cuộn kem socola và lá dứa Solite",
+                " Bánh Choco-pie Orion",
+                " Kẹo KitKat trà xanh (Bánh xốp phủ trà xanh KitKat)",
+                "Ngũ vị hương, bột cà ri",
+                "Hạt ngò, đinh hương",
+                "quế,  hoa hồi, hương thảo", 
+                "thyme, bạc hà, lá nguyệt quế",
+                "sốt tương ớt, sốt cà",
+                "mù tạc, chao",
+                "sốt mayonnaise",
+                "bơ, mật ong",
+                "mắm tôm, mắm ruốc",
+                "Tiêu làm ấm cơ thể ...",
+                "Tỏi giúp ngăn ngừa ung thư ...",
+                "Hành lá có tác dụng chống bệnh tiểu đường. ...",
+                "Nghệ giúp kháng viêm. ...",
+                "Quế, hồi có tác dụng giảm đau. ...",
+                " Gừng giúp giải cảm hiệu quả ...",
+                "Giấm gạo, giấm táo giúp cân bằng độ pH.",
+                "Nhum biển Quy Nhơn",
+                "Ốc hương tự nhiên Nha Trang",
+                "Tôm hùm Bình Ba (Khánh Hòa)",
+                "Cua Năm Căn Cà Mau",
+                "Ghẹ (Phan Rang)",
+                "“Mực nháy” Cửa Lò (Nghệ An)",
+                "Cá ngừ đại dương (Phú Yên)",
+                "Bào ngư Bạch Long Vỹ (Hải Phòng)",
+                "Mực một nắng Phan Thiết (Bình Thuận)",
+                "Ốc vú nàng Côn Đảo (Bà Rịa – Vũng Tàu)",
+                "Ngán Quảng Ninh",
+                "Sá sùng (Quảng Ninh)",
+                "Ngao hai cồi Phan Thiết",
+                "Sò huyết Bình Đại",
+                "Còi Biên mai Phú Quốc (Kiên Giang)",
+                "Tôm tít (Cà Mau)",
+                "sản ngon gần FLC Quy Nhơn ăn ở đâu?"
+            ];
+           
+            nomalText = [
+                "được mệnh danh là nhà vô địch về hàm lượng sắt, kẽm, giàu vitamin, muối khoáng cũng như các axít hữu cơ tham gia vào sự hình thành của protein. Rất tốt cho sự phát triển của não bộ, tốt cho người bệnh huyết áp cao, sơ gan, giải độc chất heroin, hen xuyễn.",
+                "chứa nhiều vitamin C giúp tăng cường hệ miễn dịch, ngăn ngừa các bệnh ung thư, chống lão hóa, tăng thể lực và sức đề kháng, đặc biệt tốt cho những người đau ốm.",
+                "có lượng đạm cao, giàu chất vôi, nhiều vitamin C, K có tác dụng thanh nhiệt, trị cảm nhiệt, hỗ trợ điều trị đái tháo đường, táo bón, chảy máu cam, chữa sót nhau thai. Là thực phẩm lành tính dùng trong bữa ăn của những người phục hồi sau phẫu thuật vết thương.",
+                "Là loại rau giàu protein, các axit amin, axit folic thúc đẩy nhanh quá trình tổng hợp ADN của tế bào, tăng số lượng tế bào, chứa nhiều acid alpha lipoic – chất chống oxy hóa giúp hòa tan chất béo vào nước và chất chống viêm.",
+                "Được mệnh danh là “vua rau quả” bởi tính lành, an toàn, nhiều chất dinh dưỡng, giàu axit béo Omega 3 – tiền chất tạo nên DHA giúp bé thông minh tiếp thu tốt, nhiều kẽm, vitamin E, chất xơ giúp cơ thể giữ nước, tốt cho tim mạch, duy trì làn da chắc khỏe, bảo vệ mắt, giảm lượng đường trong máu.",
+                "Được xem là một trong những thực phẩm giàu vitamin A nhất, bổ sung Bcarôten tốt cho mắt, cho da, tóc và sức khỏe răng miệng. Những carotenes tìm thấy trong cà rốt cũng như lutein có tác dụng làm giảm bệnh tim và đột quỵ, tăng cường năng lượng.",
+                "Có chứa nhiều chất béo có lợi cho não, Omega 3 giúp cho sự phát triển trí não bộ, phòng bệnh ung thư vú ở phụ nữ, nước bắp cải tươi chữa bệnh loét da, ngăn ngừa bệnh tiểu đường, giảm cân, đau họng, đau khớp.",
+                "Cung cấp năng lượng, có sự kết hợp của các vitamin B6, A và C, chất xơ, tryptophan. Giảm đường trong máu, cung cấp Kali cần thiết giúp điều chỉnh nồng độ trong cơ thể và giữ cho cơ bắp hoạt động khỏe mạnh.",
+                "Là một loại lương thực, thực phẩm tốt cho hệ tiêu hóa vì chúng rất dễ tiêu và chứa nhiều chất xơ giúp nhuận tràng, đa dạng chất bột đường trong khẩu phần.",
+                "Chứa rất nhiều các loại vitamin và khoáng chất đặc biệt là vitamin A kích thích quá trình sản sinh chu kỳ sống của các tế bào da.",
+                "Chứa ít calo và rất nhiều nước là nguồn silica tuyệt vời – một khoáng chất vi lượng bổ sung sức mạnh cho các mô liên kết, chứa nhiều vitamin A, C và acid folic.",
+                "Là nhà vô địch trong tất cả những loại rau lá xanh siêu có lợi cho sức khỏe, có rất nhiều vitamin, khoáng chất, chất xơ, chất chống oxi hóa và những hoạt chất sinh học khác nhau bao gồm isothiocyanates và indole-3-carbinol được chứng minh có thể trị ung thư.",
+                "Chứa nhiều vitamin C, B1 và B6, Ca, K, Cu, Mn, Se làm giảm huyết áp và tổng lượng cholesterol xấu LDL cũng như HDL, giảm nguy cơ mắc bệnh tim, tiêu diệt những mầm mống gây bệnh như vi khuẩn và nấm.",
+                "Chứa rất nhiều vitamin C và những dưỡng chất khác giúp làn da khoẻ mạnh. Công dụng đặc biệt của quả bưởi là có thể giảm cân một cách hiệu quả, ngăn ngừa sỏi thận, giảm cholesterol và phòng chống ung thư.",
+                "Là một trong những loại thực phẩm hoàn hảo nhất chứa nhiều K, Mg, Fe, Cu, Mn với nhiều Vitamin A, B, C ngoài ra còn có chất xơ và protein, là thực phẩm tốt giúp giảm stress, nâng cao tinh thần, chống trầm cảm, chữa chứng phù mặt, giảm nếp nhăn, giảm sỏi thận. Khoai tây có chứa gần như tất cả các loại chất dinh dưỡng mà chúng ta cần.",
+                "Khi nói đến giá trị dinh dưỡng của trái cây việt quất là nhà vô địch. Điểm nổi bật là thành phần chống ô xi hóa bao gồm anthocyanins và nhiều loại phytochemicals hiệu quả bảo vệ não cải thiện trí nhớ ở những người lớn tuổi, huyết áp ổn định và các dấu hiệu cholesterol xấu LDL bị oxi hóa cũng giảm, giúp trị ung thư.",
+                "Có lượng dưỡng chất vitamin áp đảo trong danh sách các loại rau củ quả, chứa một lượng lớn các carotene và chất sắt, vitamin B6, axit folic và Kali dồi dào.",
+                "Chất lycopene dồi dào bảo vệ các nhân tố có hại tấn công hệ thần kinh giúp trí nhớ nhanh nhạy, sắc bén hơn bình thường, giảm nguy cơ mắc bệnh Alzheimer.",
+                "Nguồn polyphenon phong phú nhất, tăng khả năng bảo vệ khỏi ánh nắng mặt trời ngăn ngăn ngừa tổn thương da, giàu chất oxy hóa.",
+                "Chứa nhiều vitamin A, B1, B2, B6 và C, nhiều chất Fe, Ca, Mg, Cu, P, Na. Là nguồn cung cấp chất choline, acid folic, I, chất xơ và carbohydrates ở dạng đường tiêu hóa tự nhiên, là một loại thực phẩm có tính bổ máu, giúp cải thiện tình trạng thiếu máu, xơ vữa động mạch, huyết áp, loét dạ dày, táo bón, nhiễm độc, bệnh gan.",
+                "Khi bạn mở lớp giấy bạc màu vàng ra, ngay lập tức sẽ cảm nhận được hương vị thơm ngon của loại socola hảo hạng kết hợp cùng những mẩu hạt dẻ giòn bùi bọc bên ngoài cùng của viên chocolate.",
+                "Kẹo hạnh nhân Nga Gradian có 2 loại: trắng và đen. Mỗi loại đều mang đến hương vị đặc trưng riêng phù hợp với sở thích của mỗi người.",
+                "Với kẹo hạnh nhân trắng, hương vị là ngọt bùi, thơm ngậy. Với kẹo hạnh nhân đen, hương vị sẽ là đắng, mang đặc trưng của socola.",
+                "Bánh quy 9 vị Biscotti của Nga được đóng gói nhỏ gọn, dễ dàng và tiện lợi trong việc sử dụng, bảo quản. Thiết kế bao bì đẹp mắt giúp bạn bạn có thể đem tặng người thân, đồng nghiệp trong những dịp lễ Tết.",
+                "Kẹo Raffaello có thể quyến rũ bất kỳ một người khó tính nào chỉ bằng mùi hương bên ngoài. Rất thơm nhưng ăn thì lại ngọt êm và kích thích vị giác.",
+                "Kẹo dừa Raffaello có lớp vỏ bọc xốp, mịn vị sữa. Bên ngoài là 1 lớp vụn dừa thơm rất đặc trưng. Dưới lớp vỏ kem dừa là lớp quế xốp giòn tan, chuẩn vị châu Âu.",
+                "Bánh nấm Nga là sự kết hợp của bánh quy giòn rụm, mũ nấm được làm từ socola đen, socola trắng nguyên chất thơm ngon ăn kèm với thân mình tạo hương vị riêng mà không hề ngấy hay quá ngọt.",
+                "Ai ai cũng biết Huế ngoài đền đài lăng tẩm nguy nga, ngoài ẩm thực thanh cao tao nhã còn có đặc sản kẹo mè xửng đặc biệt. Chiếc kẹo vừa giòn tan béo ngậy vừa dẻo khiến cho các em bé thích mê, các bà cụ không ngại nhấm nháp ấy được làm từ mè, mạch nha và đậu phộng. ",
+                "Nguyên liệu bình thường nhưng công thức mới đặc biệt. Họ biết cách nấu đường thành mạch nha trong vắt dẻo quẹo, biết cách dùng mè tạo vị thơm giòn tan cho lớp vỏ và bí quyết gia truyền để bánh ngọt nhưng không sắc, không thé, mềm dẻo chứ không dai nhách. Thế mới xứng danh đặc sản, được khách gần xa tìm mua làm quà.",
+                "Bánh ít lá gai ngon đến độ ai ăn cũng khen, ăn rồi nhất định phải mua một ít về làm quà. Bởi cái hương vị bùi béo ngay từ đầu lưỡi, thơm ngọt ngay từ lớp vỏ mềm mịn. Ngoài nguyên liệu làm bánh quen thuộc như bột gạo nếp, dừa đậu xanh đối với bánh ngọt, tôm thịt với bánh mặn thì còn có thêm nước cốt lá ít đặc biệt (lá có hình trái tim với răng cưa ở viền lá). Loại nước này giúp bánh có màu đen trong đẹp mắt, mùi thơm mát và cũng là nguyên nhân hình thành tên gọi bánh ít lá gai.",
+                "Kẹo dừa Bến Tre vốn là một trong những sản phẩm có nguồn gốc từ cây dừa. Với người dân, bất cứ thành phần nào của cây dừa cũng sử dụng được. Thân lấy gỗ, lá làm nhà, cổ hũ làm gỏi, quả lấy nước giải khát lấy cơm làm món ăn và làm kẹo. Vì thế, chẳng nơi đâu có được kẹo dừa ngon lạ như Bến Tre. Viên kẹo hình chữ nhật, màu xanh xen lẫn màu kem luôn có vị thơm, vị béo ngậy đặc trưng của nước cốt dừa nguyên chất; thêm thắt vào đó là vị ngọt đủ của mạch nha. Vậy nên, ăn kẹo mới có cảm giác chúng từ từ tan trong miệng thú vị vô cùng.",
+                "Cũng làm từ mạch nha, đậu phộng nhưng không bao giờ người ta nhầm lẫn kẹo cu đơ Hà Tĩnh với kẹo mè xửng Huế. Vì chỉ cần nhìn hình dáng và nếm một miếng là họ sẽ nhận ngay ra điểm khác biệt.",
+                "Kẹo cu đơ có đậu phộng nhiều hơn, có thêm lớp bánh tráng giòn và mật mía thơm ngọt kèm chút gừng tươi. Mỗi thứ có quy định tuyển chọn rất khắt khe. Đậu phộng phải là giống lạc chắc hạt thịt giòn bùi, vỏ màu lụa ngà trồng vùng đất bãi Nghi Xuân, Thạch Trì. Mật mía phải là loại màu nâu cánh gián, cô đặc, vị không gắt. Bánh đa yêu cầu loại mỏng, nướng không bị rộp. Và tất nhiên gừng chọn phải tươi, già, thơm, vỏ căng mỏng. Hoàn thành khâu nguyên liệu chỉ là bước đầu, vì đến khi nấu kẹo người ta phải dồn mọi công sức và tập trung cao độ để thực hiện chuẩn từng thao tác. Kẹo cu đơ Hà Tĩnh hấp dẫn thực khách còn có một lí do khác nữa, đó là cách thưởng thức đặc sản. Một ấm trà nóng, một đĩa kẹo càng làm cho sắc vị hài hòa thỏa mãn giác quan.",
+                "Bánh pía hay còn gọi bánh lột da là đặc sản nức tiếng của vùng Tây Nam Bộ. Nó đặc biệt từ lớp vỏ cho đến lớp nhân bên trong. Thưởng thức một chiếc bánh mà cảm giác như một người nghệ nhân thực thụ. Vỏ áo mềm mịn tỏa hương thơm sầu riêng nức mũi lại có thể dễ dàng bóc từng lớp để rồi lộ ra phần nhân đậu xanh, khoai môn, lòng đỏ trứng muối hấp dẫn. Cắn một miếng vỏ bánh, nhân bánh bùi ngậy tan dần ngay đầu lưỡi. Những yếu tố này cộng với mùi vị sầu riêng đậm nét tạo nên tổng thể hoàn hảo. Vì vậy, bánh pía không chỉ được ưa chuộng ở khu vực miền Nam mà còn có mặt ở khu vực miền Trung miền Bắc cũng như nước ngoài.",
+                "Đối với thợ làm kẹo, kẹo sìu châu Nam Định không chỉ xứng danh một trong những đặc sản bánh kẹo ngon nhất Việt Nam mà còn được xem là tuyệt đỉnh của kỹ thuật làm kẹo lạc",
+                "Làm ra được một viên kẹo coi như hoàn thành một tác phẩm nghệ thuật và tác phẩm ấy gói gém tâm nguyện, công phu của người nghệ nhân. Bởi kẹo sìu châu thành phẩm có sắc màu hổ phách rất đẹp, thơm lừng, giòn tan; đặc biệt không bị hôi bị ỉu. Theo chia sẻ của người làng nghề thì bí quyết chính là thứ “đường chõ” tinh khiết nấu dẻo tay đã quyện đều vào từng hạt lạc rang chín thấu giòn bùi, cộng thêm lớp bột nếp hương bao quanh thanh kẹo",
+                "Trong top những đặc sản bánh kẹo ngon miền Bắc, ngoài bánh cốm, kẹo sìu châu còn có bánh đậu xanh Hải Dương. Đây là món bánh quen thuộc trong những ngày lễ tết, trung thu của vùng Bắc Bộ.",
+                "Bánh đậu xanh Hải Dương làm từ bột đậu xanh nguyên chất. Mỗi viên bánh được định hình bằng khuôn và bao bọc lớp giấy cứng. Bánh mềm mịn dễ tan, vị béo ngậy và sắc ngọt đậm. Thưởng thức bánh đậu xanh cùng chén trà xanh trong những ngày se lạnh là thú vui tao nhã của các vị bô lão, thi nhân và nhiều thực khách khác.",
+                "Đặc sản Việt Nam đa dạng phong phú song luôn có nét riêng, cái nét riêng đó làm cho bất cứ du khách nào đến đây đều háo hức, đi xa đều mong nhớ. Nếu có cơ hội thưởng thức các bạn hãy nếm thử những đặc sản trên nhé.",
+            ];
+            
+            longText = [
+                    "Nông Quốc Chấn là nhà thơ, nhà hoạt động văn hóa, người dân tộc Tày ở Bắc Cạn. Từ một ông giáo hiền lành, sớm được giác ngộ cách mạng, được rèn luyện trong khói lửa chiến tranh, ông trở thành một cán bộ trung kiên, một nhà hoạt động văn hóa, một nhà thơ xuất sắc của Đảng và dân tộc.Bài thơ 'Dọn về làng' được sáng tác trong chiến dịch Biên giới thu – đông 1950, là tác phẩm tiêu biểu nhất của Nông Quốc Chấn. Nguyên tác bằng tiếng Tày, sau đó được tác giả dịch ra tiếng phổ thông theo thể thơ tự do.",
+                    "Năm 1951, tại Đại hội liên hoan học sinh sinh viên thế giới tại Béc-lin, bài thơ đã được tặng giải Nhì, đã được dịch sang tiếng Pháp, giới thiệu trên Tạp chí Châu Âu.Nhà thơ đã sử dụng biện pháp tương phản giữa quá khứ đau thương với niềm vui chiến thắng và giải phóng để ca ngợi sự hồi sinh, sự vươn dậy của quê hương và của đồng bào các dân tộc Cao-Bắc-Lạng. Mở đầu bài thơ Dọn về làng là tiếng gọi mẹ cất lên; gọi mẹ để báo tin vui, tin mừng chiến thắng:Mẹ! Cao – Lạng hoàn toàn giải phóng Tây bị chết bị bắt sống hàng đàn Vệ quốc quân chiếm lại các đồn Người đông như kiến, súng đầy như củi.",
+                    "Đoạn thơ làm sống lại cảnh tượng chiến trường Biên giới năm 1950. Gọng kìm đường số Bốn của giặc bị chặt đứt, bị phá tung. Quân ta đánh chiếm đồn Đông Khê, tiêu diệt hai binh đoàn Sác – tong và Lơ – pa, hàng ngàn giặc Tây'bị chết bị bắt sống'. Hai so sánh'Người đông như kiến, súng đầy như cũi đã nói lên thật hay sức mạnh và khí thế chiến đấu, chiến thắng của quân và dân ta thuở ấy.Từ niềm vui chiến thắng, đứa con đau đớn nhớ lại những năm dài gian khổ, đau thương dưới ách kiềm kẹp, chiếm đóng của lũ giặc Pháp hung tàn.Trên bước đường trở về làng cũ để sửa nhà phát cỏ, để Cày ruộng vườn trồng lúa ngô khoai, đứa con bồi hồi nhớ lại:Mấy tháng năm qua quên tết tháng giêng, quên rằm tháng bảy, Chạy hết núi khe, cay đắng đủ mùi. ",
+                    "Những lễ tết lâu đời phải 'quên đi! Những phong tục tập quán tốt đẹp của dân tộc phải 'quên' đi. Bàn thờ tổ tiên nguội lạnh hương khói. Trải bao cay đắng vì phải chạy giặc triền miên: 'Chạy hết núi lại khe, cay đắng đủ mùi'.Hai tháng trước khi vào vụ vải thiều, tỉnh Hải Dương, Bắc Giang nhận được đăng ký thu mua loại trái cây đặc sản này từ các doanh nghiệp, thương nhân nhiều nước.Chiều 9/4, ông Vũ Việt Anh, Phó giám đốc Sở Nông nghiệp và Phát triển nông thôn tỉnh Hải Dương, cho biết vụ vải thiều năm nay tỉnh dự kiến năng suất đạt 45.000-52.000 tấn.Hiện đã có nhiều đơn vị nước ngoài và doanh nghiệp trong nước đăng ký với tỉnh bao tiêu sản phẩm, phục vụ xuất khẩu sang thị trường Trung Quốc, Nhật Bản, Australia, Mỹ, Singapore, với các loại vải thiều như Amei, Rồng Đỏ, Thanh Hà..., ông Việt Anh nói.",
+                    "Theo ông, mọi năm doanh nghiệp một số nước, như Nhật Bản, thường cử người sang giám sát việc thu mua, sơ chế, đóng gói. Năm nay, do dịch Covid-19 nên phía Nhật Bản đã đặt hàng các cơ sở thu mua trong tỉnh, thực hiện giám sát bằng hệ thống camera kết nối trực tiếp.Với đối tác Trung Quốc, một số doanh nghiệp của nước này đã xây dựng cơ sở thu mua, đóng gói tại huyện Thanh Hà và thành phố Chí Linh từ nhiều năm trước, nên năm nay các đơn vị này hạn chế đưa người sang.Quan điểm của UBND tỉnh Hải Dương là mở cửa, tạo điều kiện cho các thương lái, doanh nghiệp ra vào địa bàn thu mua nông sản. Tuy nhiên, với người nước ngoài thì phải tuân thủ quy định về phòng chống dịch bệnh, ông Việt Anh nói thêm.Hiện toàn tỉnh Hải Dương có gần 10.000 ha vải thiều.",
+                    "Trong đó, vựa vải huyện Thanh Hà chiếm 3.300 ha, thành phố Chí Linh 3.600 ha, diện tích còn lại ở các địa phương khác trong tỉnh.Người dân huyện Thanh Hà (Hải Dương) thu hoạch, vận chuyển vải đến giao cho các cơ sở thu mua trên địa bàn trong mùa vụ 2020. Ảnh: Ngọc ThànhNgười dân huyện Thanh Hà (Hải Dương) thu hoạch, vận chuyển vải đến giao cho các cơ sở thu mua trên địa bàn trong mùa vụ 2020. Ảnh: Ngọc ThànhThông tin từ UBND huyện Lục Ngạn (Bắc Giang) cho hay, huyện nhận được đăng ký của 167 thương nhân Trung Quốc xin đến địa bàn để thu mua vải thiều trong hai tháng 5 và 6. Huyện đã lập danh sách trình UBND tỉnh chấp thuận, đề nghị Cục quản lý xuất nhập cảnh (Bộ Công an) hoàn thiện thủ tục cho phép nhập cảnh.Ngoài ra, thời gian tới, huyện Lục Ngạn dự kiến đón tổng số khoảng 500 thương nhân Trung Quốc sang thu mua vải thiều.",
+                    "Đây là những thương nhân có mối quan hệ thương mại nhiều năm nay với các chủ vườn, cơ sở thu mua trên địa bàn huyện.Để tạo điều kiện cho thương nhân Trung Quốc vào thu mua vải thiều, đồng thời đảm bảo phòng, chống dịch Covid-19, nhà chức trách địa phương lên kế hoạch tổ chức xe đón các thương nhân tại cửa khẩu, đưa về khu cách ly tập trung 14 ngày và lấy mẫu xét nghiệm. Hết thời gian cách ly, các thương lái đủ điều kiện mới được đưa xuống nhà vườn thu mua vải.Huyện Lục Ngạn ước tính sản lượng vải thiều năm 2021 đạt khoảng 120.000 tấn, cao hơn so với năm 2020 (sản lượng năm 2020 là 85.000 tấn).",
+                    "Chuối, sầu riêng, quả vải, quả bơ, dừa đều rất tốt cho sức khỏe, ít calo, tuy nhiên hàm lượng đường, béo quá cao nên ăn quá nhiều sẽ dễ tăng cân.Ăn trái cây mỗi ngày không chỉ bổ sung vitamin và chất xơ mà còn có cảm giác no bụng, giảm lượng thức ăn nạp vào cơ thể. 100 g thịt nạc cung cấp 140 kcal, 100 g thịt gà và thịt bò chứa 134 và 288 kcal, còn 100 g cơm trắng có 116 kcal. Từ chỉ số này (công thức là kcal/100g) bạn có thể dùng tham khảo khi ăn 5 loại trái cây sau đây.Chuối92 kcal/100 g = 15 phút đi bộ nhanh.Quả chuối giàu chất béo và đường nên quá trình giảm cân không nên ăn quá nhiều.",
+                    "Ảnh minh họa.Quả chuối giàu chất béo và đường, giảm cân không nên ăn quá nhiều. Ảnh minh họa.Chuối có lượng calo thấp hơn một chút so với thịt, nhưng chuối rất giàu chất béo và đường, vì vậy không nên ăn quá nhiều. Dù vậy, chuối giàu chất dinh dưỡng và có thể ngăn ngừa nhiều loại bệnh tim mạch. Nên trộn chuối với trái cây trong món salad để bổ sung nhiều chất dinh dưỡng.Quả sầu riêng147 kcal/100 g = 25 phút đi bộ nhanh.Sầu riêng có thể nói là một loại quả đặc biệt, chứa tới 16% chất béo, tương đương với lượng kcal của thịt nạc.",
+                    "Chất béo trong sầu riêng là loại chất béo có lợi nhưng nếu ăn quá nhiều sầu riêng chắc chắn sẽ tăng cân.Quả vải72 kcal/100 g = 10 phút đi bộ nhanh.Lượng kcal trong quả vải thấp, nhưng lượng đường lại rất cao, chiếm 20%. Để tránh tăng cân, cần cân đối số lượng nạp vào cơ thể thích hợp. Ngoài ra không nên ăn vải lúc đói vì hàm lượng đường trong vải tươi sẽ khiến đường huyết tăng độtQuả dừa231 kcal/100 g = 69 phút tập thể dục nhịp điệu.Nguyên liệu của nước dừa chủ yếu là cơm dừa, cứ 100 g cơm dừa chứa 35 g chất béo, còn nước dừa thì hầu như không chứa chất béo. Các loại chất béo thực vật từ cơm dừa thường chứa nhiều loại axit béo no, khi vào cơ thể sẽ gây tích tụ mỡ thừa và tăng cân nếu không kiểm soát.",
+                    "Với lượng chất béo và calo cao, cơm dừa có thể dẫn đến tăng cân nếu ăn thường xuyên. Ảnh minh họa.Với lượng chất béo và calo cao, cơm dừa có thể dẫn đến tăng cân nếu ăn thường xuyên. Ảnh minh họa.Quả bơ160 kcal/100 g = 1,5 giờ đi bộ.Không giống như hầu hết các loại trái cây khác, tỷ trọng chất béo trong quả bơ khá cao, hơn 15%. Về cơ bản, càng nạp nhiều kcal thì càng dễ tăng cân. Quả bơ chứa tương đối nhiều kcal nên nếu ăn nhiều sẽ tăng cân.Nếu muốn giảm cân, không nên ăn nhiều hoa quả có hàm lượng đường cao, cũng nên kiểm soát lượng hoa quả ăn mỗi ngày ở mức 200 g. Cụ thể:- Trái cây có hàm lượng đường thấp (4-10%): bưởi, mận, dâu tây.- Trái cây có hàm lượng đường trung bình (10-15%): cam, đu đủ, đào, táo, nho, dứa, kiwi, lựu.",
+                    "- Trái cây có hàm lượng đường cao (>15%): chuối, hồng, vải, mía...Cách ăn trái cây trong ngàyĂn giữa các bữa ănĂn trái cây trước bữa ăn có thể làm tăng cảm giác no. Do đó cách này có thể kiểm soát lượng thức ăn nạp vào sau đó, có lợi cho người giảm cân.Đừ",
+                    "Trong báo cáo gửi tới Kỳ hợp thứ 8 Quốc hội khoá 14 về công tác mở cửa thị trường xuất khẩu nông lâm thuỷ sản, Bộ Nông nghiệp và Phát triển Nông thôn ghi nhận nhiều kết quả đạt được trong tháng 10 năm 2019.Cụ thể, gia tăng số doanh nghiệp được phép xuất khẩu thủy sản sang EU, Hàn Quốc, Trung Quốc, Liên bang Nga, Ả rập Xê út. 13 doanh nghiệp tiếp tục được xuất khẩu cá da trơn vào Hoa Kỳ; mở rộng xuất khẩu nông sản sang một số thị trường mới nhưxuất khẩu thịt gà sang Nhật; xoài, vú sữa sang Hoa Kỳ; măng cụt, sữa sang Trung Quốc; nhãn, vải sang Úc... Kim ngạch xuất khẩu nông lâm thủy sản 9 tháng đầu năm 2019 đạt 30,2 tỷ USD tăng 2,7% so với cùng kỳ.Hiện, nông lâm thủy sản Việt Nam có mặt ở trên 190 quốc gia và vùng lãnh thổ. ",
+                    "Chi tiết hơn từng sản phẩm, Bộ này cho hay, đối với các sản phẩm trồng trọt, hầu hết các sản phẩm khô, đã qua chế biến có thể xuất khẩu đi tất cả các thị trường. Riêng đối với quả tươi một số thị trường khó tính như Mỹ, Úc, Nhật Bản, Trung Quốc... đòi hỏi phải được phân tích nguy cơ dịch hại và cấp phép nhập khẩu từng loại quả.Về sản phẩm chăn nuôi, hiện đã xuất khẩu thịt gà chế biến đi Nhật Bản; xuất khẩu lợn sữa vào Malaysia, Hồng Kông; xuất khẩu mật ong đi EU, Hoa Kỳ. Đã xuất lô sữa đầu tiên đi Trung Quốc trong tháng 10/2019, hoàn thành đàm phán với cơ quan có thẩm quyền của Hồng Kông để xuất khẩu thịt lợn mảnh đông lạnh, thịt gà chế biến và tổ yến sang Hồng Kông.Đối với thủy sản, Việt Nam đã xuất khẩu thủy sản sang các thị trường khó tính, như: EU, Mỹ, Hàn Quốc,… Riêng Trung Quốc đã chấp thuận nhập khẩu 48 loài thủy sản sống và 128 loại sản phẩm thủy sản sơ chế, chế biến được từ Việt Nam. ",
+                    "Về lâm sản, các thị trường lớn xuất khẩu gỗ và sản phẩm gỗ của Việt Nam là: Hoa Kỳ, Trung Quốc, Nhật Bản, Hàn Quốc, EU…, giá trị xuất khẩu lâm sản và lâm sản ngoài gỗ tăng theo hàng năm.Mặc dù vậy, theo đánh giá của Bộ Nông nghiệp, công tác cập nhật, phổ biến quy định của thị trường nhập khẩu của các cơ quan quản lý nhà nước cho doanh nghiệp xuất khẩu có lúc chưa đầy đủ, kịp thời.Các doanh nghiệp xuất khẩu chưa nhận thức đủ về yêu cầu quy định của thị trường; ý thức của một số bộ phận người sản xuất, kinh doanh còn kém dẫn đến vi phạm các quy định về đảm bảo chất lượng, mẫu mã, xuất xứ hàng hóa,…, báo cáo nêu rõ.",
+                    "Để tháo gỡ hàng loạt khó khăn, khắc phục tồn tại, hạn chế, Bộ Nông nghiệp và Phát triển Nông thôn cho biết, thời gian tới tiếp tục đàm phán để tháo gỡ rào cản kỹ thuật, rào cản thương mại, đặc biệt là các thị trường lớn như: Trung Quốc, Hoa Kỳ, Nhật Bản, EU, ASEAN.... Phối hợp đẩy mạnh việc xây dựng thương hiệu, chỉ dẫn địa lý cho các sản phẩm thế mạnh của địa phương và các sản phẩm quốc gia, sản phẩm vùng.Rà soát, điều chỉnh các chính sách khuyến khích, hỗ trợ doanh nghiệp đầu tư vào nông nghiệp; khuyến khích phát triển hợp tác, liên kết sản xuất với tiêu thụ nông sản và các thông tư, tiêu chuẩn, quy chuẩn kỹ thuật theo hướng phù hợp với chuẩn mực quốc tế và thực tiễn sản xuất.",
+                    "Ngày nay, mặc dù có rất nhiều loại thuốc chữa bệnh tác dụng nhanh chóng, hiệu quả nhưng con người lại ưa chuộng sử dụng thảo dược thiên nhiên để phòng và điều trị bệnh. Để tiện lợi cho người sử dụng, chúng ta đã sản xuất thành công nhiều loai thuốc chữa bệnh có tinh chất từ thảo dược thiên nhiên, hiệu quả tuy không mạnh mẽ bằng thuốc tây hay thuốc biệt dược nhưng lại an toàn cho sức khỏe bởi nó không hoặc rất ít gây ra tác dụng phụ cho cơ thể.Vậy điều gì khiến cho nhiều người ưa tin tưởng sử dụng các thảo dược và thuốc làm từ thảo dược?Chúng ta sẽ cùng tìm câu trả lời trong bài viết dưới đây.",
+                    "Các loại thuốc tây y thường có tác dụng rất nhanh chóng và hiệu quả trong việc chữa trị bệnh tật.Tuy nhiên, thuốc tây y lại là con dao hai lưỡi đối với sức khỏe con người.Khi sử dụng thuốc trong một thời gian dài hoặc với liều lượng cao sẽ dẫn tới những ảnh hưởng xấu tới các cơ quan trong cơ thể, nhất là gan và thận. Do chức năng chính của gan và thận là bài trừ chất độc ra khỏi cơ thể nên khi sử dụng nhiều thuốc tây y khiến hai bộ phận này phải làm việc quá sức, dẫn đến suy giảm chức năng gan, thận. Chính vì vậy mà những người bắt buộc phải sử dụng thuốc và sử dụng trong thời gian kéo dài đều tin tưởng những thảo dược thiên nhiên thay để bảo vệ sức khỏe.",
+                    "Hầu hết tất cả các loại thảo dược thiên nhiên đều đã được kiểm chứng tác dụng từ lâu, đã được sang lọc và đưa ra những công thức nhất định. Một số thảo dược thường được sử dụng như nấm linh chi, nhân sâm, hoàng kỳ, ba kích, lộc nhung… đều là những loại quý hiếm.",
+                    "Vì các thảo dược này đều có nguồn gốc từ thiên nhiên nên công dụng chữa bệnh của nó thường thấp hơn so với thuốc tây y và phải kiên trì sử dụng đều đặn trong một thời gian dài mới thấy hết được tác dụng của nó. Những bài thuốc đông y sử dụng thảo dược thiên nhiên có thể sử dụng trong một thời gian dài mà không hề gây ra tác dụng phụ hay ảnh hưởng đến sức khỏe hoặc sinh ra hiện tượng kháng thuốc, phản ứng với thuốc như khi sử dụng thuốc tây.",
+                    "Nhiều loại thảo dược còn có tác dụng cân bằng âm dương trong cơ thể. Thông thường chúng được sử dụng cho những bệnh nhân mắc các bệnh mãn tính, nguy hiểm, nhưng cũng có rất nhiều loại thảo mộc có tác dụng điều trị bệnh cấp tính, hiệu quả rất tốt.Thậm chí có những bài thuốc là sự kết hợp độc đáo mà chỉ người bốc thuốc mới có thể hiểu hết được.",
+                    "Những loại thảo dược chữa bệnh này đều có sẵn trong tự nhiên, rất dễ kiếm hoặc dễ trồng. Giá thành lại rẻ hơn rất nhiều so với thuốc tây y. Nhược điểm duy nhất của thảo dược chính là những công đoạn cầu kỳ khi sử dụng. Các bài thuốc thảo dược khi thu hái về thường không sử dụng được ngay mà phải trải qua quá trình sơ chế, sấy khô, sao vàng trên ngọn lửa…tiếp theo là dùng ấm bằng đất nung để sắc thuốc với thời gian kéo dài vài tiếng đồng hồ mới có được một mẻ thuốc. Nhiều người cũng vì lý do này mà ngại sử dụng thảo dược chữa bệnh. Hơn thế nữa, việc uống thảo dược để chữa bệnh phải hết sức kiên trì mới thu được kết quả.",
+                    "Cây đinh lăng là một trong những thảo dược lâu dời và rất phổ biến ở nước ta. Lá, thân và cả rễ đinh lăng được sử dụng để điều trị bệnh sỏi thận, tiêu viêm, giảm sưng phù rất hiệu quả. Loại thảo mộc này rất dễ trồng và sử dụng cũng không quá cầu kỳ như một số loại thảo dược khác.",
+                    "Cây cam đắng được dùng trong y học cổ truyền nhằm điều trị các bệnh sung huyết ngực, bệnh về đường tiêu hóa. Ngoài ra nó còn được dùng để hỗ trợ việc giảm cân.",
+                    "Cây lô hội hay còn gọi là nha đam có tác dụng chữa lành vết thương, vết lở loét hay làm dịu nhanh chóng các vết bỏng. Nhờ có lớp gel mà lô hội giúp tạo ra một màng bảo vệ bên ngoài vết thương, đồng thời kích thích cho vết thương tạo ra các mô, đẩy nhanh quá trình lành vết thương.",
+                    "Nhân sâm trước đây là một loại thảo mộc quý hiếm, do chúng chỉ mọc ở những nơi có địa hình hiểm trở và sống lâu năm nên khó tìm và rất đắt đỏ. Tuy nhiên, từ khi con người biết được giá trị của loại thảo mộc này thì đã đem nhân giống và trồng nhiều để thu hoạch củ. Nhân sâm được dùng như một loại thuốc bổ cơ thể, giúp giảm stress, tăng cường trí nhớ và hễ miễn dịch, bổ sung năng lượng giúp cơ thể khỏe mạnh. Ngoài ra chúng còn được sử dụng để chiết xuất ra tinh chất giúp làm đẹp da cho chị em phụ nữ.",
+                    "Mở quán cafe, trà sữa…cần chuẩn bị những gì? Đó chắc chắn là câu hỏi của nhiều chủ quán luôn trăn trở. Một trong những thứ cần mua đó là máy móc, thiết bị phục vụ công việc pha chế. Những thiết bị này không chỉ giúp quán hoạt động thành công mà còn giúp mang lại những món đồ uống ngon, hấp dẫn hơn. Mua loại máy nào, của hãng nào để đảm bảo chất lượng, uy tín? Điều này cũng khiến nhiều bạn phải đau đầu khi mà trên thị trường xuất hiện nhiều loại, nhiều mẫu mã. Nếu bạn chưa biết mua loại máy nào chất lượng, giá thành tốt hãy tham khảo ngay máy làm đá viên sạch Hải Âu HA 50P, máy định lượng đường Hải Âu HAT 16P, và máy dập nắp cốc Hải Âu HAT 95C mà trong video pha chế trên sử dụng nhé",
+
+                ];
+            categories = [
+                "Rau củ quả",
+                "Bánh kẹo & Đồ ăn vặt",
+                "Mì ăn liền",
+                "Gia vị",
+                "Các loại Bột\\, Gạo\\, Nếp",
+                "Cà phê và trà"
+            ];
+
+            $('#generateCSV').click(function () {
+                numRow = parseInt($('#numRow').val()) || 1;
+                // getHeader();
+                generateCSV(numRow);
+            })
+
+            async function generateCSV (numrow) {
+                await progressLoad();
+                data = Array();
+                header = getHeader();
+                obj = getNameAndImageUrl();
+                choose = false;
+
+                data.push(header);
+                for ($i = 0; $i < numrow; $i++) {
+                    rand = Math.floor(Math.random() * obj.url.length); 
+                    item = Array();
+
+                    $('#tableData td').each(function () {
+                        el = $(this);
+                        option = el.find('select').val();
+
+                        switch(option) {
+                            case '0':
+                                item.push(el.find('input').val());
+                                break;
+                            case '1':
+                                val = el.find('input').val().trim();
+                                regex = /\D+/;
+                                if (regex.test(val) || val == '') {
+                                    val += '-' + $i; 
+                                } else {
+                                    val = parseInt(val) + ($i+1);
+                                }
+                                item.push(val);
+                                break;
+                            case '2': 
+                                from = el.find('.from').val();
+                                to = el.find('.to').val();
+                                item.push(random('number', from, to));
+                                break;
+                               
+                            case '3': 
+                                item.push(obj.url[rand]);
+                                break;
+                            case '4':
+                                item.push(random('short-text'));
+                                break;
+                            case '5':
+                                item.push(random('nomal-text'));
+                                break;
+                            case '6':
+                                item.push(random('long-text'));
+                                break;
+                            case '7':
+                                if (choose == false && $('#categories li').length == 0) {
+                                    choose = confirm("Not found \"List categories\", do you want to use \"Auto cagegories\"?");
+                                }
+                                
+                                if (!choose) {
+                                    num = el.find('.num').val();
+                                    item.push(random('list-cate', num));
+                                    break;
+                                }
+                            case '8':
+                                num = el.find('.num').val();
+                                item.push(random('auto-cate', num));
+                                break;
+                            default:break;
+                        }
+                    });
+                    data.push(item);
+                }
+                
+                // export csv 
+                var currentdate = new Date(); 
+                filename = "product-data-csv_" + currentdate.getFullYear() + "-"
+                            + (currentdate.getMonth()+1)  + "-" 
+                            + currentdate.getDate() + "_"  
+                            + currentdate.getHours() + "-"  
+                            + currentdate.getMinutes() + "-" 
+                            + currentdate.getSeconds() + ".csv";
+
+                if (false && window.navigator.msSaveBlob) {
+                    var blob = new Blob([decodeURIComponent(data)], {
+                        type: 'text/csv;charset=utf8'
+                    });
+
+                    // Crashes in IE 10, IE 11 and Microsoft Edge
+                    // See MS Edge Issue #10396033
+                    // Hence, the deliberate 'false'
+                    // This is here just for completeness
+                    // Remove the 'false' at your own risk
+                    window.navigator.msSaveBlob(blob, filename);
+                } else if (window.Blob && window.URL) {
+                    // HTML5 Blob        
+                    var blob = new Blob([$.csv.fromArrays(data)], {
+                        type: 'text/csv;charset=utf-8'
+                    });
+                    var csvUrl = URL.createObjectURL(blob);
+                    download(csvUrl, filename);
+                } else {
+                    // Data URI
+                    var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(data);
+
+                    download(csvData, filename);
+                }
+                
+                
+            }
+
+            function random(type, from, to) {
+                from = parseInt(from) || 0;
+                to = parseInt(to) || 0;
+
+                switch(type) {
+                    case 'short-text':
+                        str = shortText[Math.floor(Math.random() * shortText.length)];
+                        return str;
+                    case 'nomal-text':
+                        str = nomalText[Math.floor(Math.random() * nomalText.length)];
+                        return str;
+                        break;
+                    case 'long-text':
+                        str = longText[Math.floor(Math.random() * longText.length)];
+                        return str;
+                    case 'number':
+                        num = from + Math.floor(Math.random() * (to - from));
+                        return num;
+                    case 'list-cate':
+                        cate = [];
+                        reCate = [];
+                        rand = '';
+                        num = (from == 0) ? 1 : from;
+                        choose = false;
+
+                        
+
+                        if (choose) {
+                            cate = categories;
+                        } else {
+                            $('#categories li').each(function () {
+                                str = $(this).html().trim().toString();
+                                str = str.replaceAll(',', "\\,");
+                                cate.push(str);
+                            });
+                        }
+
+                        while (num > 0) {
+                            nrand = Math.floor(Math.random() * cate.length);
+                            if (!rand.includes(nrand.toString())) {
+                                reCate.push(cate[nrand]);
+                                rand += nrand.toString();
+                                num -= 1;
+                            }
+                        }
+                        
+                        return reCate.join(',');
+                    case 'auto-cate':
+                        cate = [];
+                        rand = '';
+
+                        while (from > 0) {
+                            from = from == 0 ? 1 : from;
+                            nrand = Math.floor(Math.random() * categories.length);
+                            if (nrand != rand) {
+                                cate.push(categories[nrand]);
+                                rand = nrand;
+                                from -= 1;
+                            }
+                        }
+                        return cate.join(',');
+                    default:return;
+                }
+            }
+
+            function getHeader () {
+                header = Array();
+                $('#tableData th').each(function () {
+                    item = $(this);
+                    header.push(item.html());
+                })
+                return header;
+            }
+
+            function getNameAndImageUrl () {
+                obj = Object();
+                namevi = Array();
+                strUrl = Array();
+
+                if (getBaseUrl() == false) {
+                    return false;
+                } 
+                baseUrl = getBaseUrl();
+
+                // get name image 
+                img = $('#imgShow img');
+                if (img.length != 0) {
+                    img.each(function () {
+                        namevi.push($(this).attr('data-namevi'));
+                        baseurl  = baseUrl + $(this).attr('data-url');
+                        strUrl.push(baseurl.toString());
+                    });
+                    obj.namevi = namevi;
+                    obj.url = strUrl;
+                } else {
+                    alert('Upload your image, please!');
+                    return false;
+                }
+                return obj;
+            }
+
+            function getBaseUrl() {
+                input = $('#tableData input[data-val="Images"]');
+
+                if (input.length == 0) {
+                    alert('Upload your CSV file, please!');
+                    return false;
+                }
+
+                url = input.val();
+                return url.slice(0, url.lastIndexOf('/')) + '/';
+            }
+
+            function formatText (text) {
+                var str = text;
+                str = str.toLowerCase();
+                str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+                str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+                str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+                str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+                str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+                str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+                str = str.replace(/đ/g, "d");
+                str= str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'| |\"|\&|\#|\[|\]|~|$|_/g,"-");
+                /* tìm và thay thế các kí tự đặc biệt trong chuỗi sang kí tự - */
+                str= str.replace(/-+-/g,"-"); //thay thế 2- thành 1-
+                str = str.replace(/^\-+|\-+$/g, "");
+
+                return str;
+            }
+
+            function readFile(el) {
+                var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
+                var regex2 = /.txt/ ;
+                
+                if (regex.test(el.val().toLowerCase())) {
+                    if (typeof (FileReader) != "undefined") {
+                        var reader = new FileReader();
+                        reader.readAsText(el[0].files[0]);
+
+                        reader.onload = function (e) {
+                            var table = $("<table />");
+                            var rows = e.target.result.split('\n');
+
+                            if (regex2.test(el.val().toLowerCase())) {
+                                for ($i = 0; $i < rows.length; $i++) {
+                                    str = "<li class='collection-item'>" + rows[$i] + "</li>";
+
+                                    $('#categories').append(str).removeClass('hide').fadeIn('slow');
+                                }
+                                $('#imgUpload').closest('div').addClass('pulse');
+                                $('#cateUpload').closest('div').removeClass('pulse');
+                            } else {
+                                var row0 = $.csv.toArray(rows[0]);
+                                var len = rows[rows.length - 1].trim().length == 0 ? rows.length - 2 : rows.length - 1;
+                                var endrow = $.csv.toArray(rows[len]);
+                                $('#fileUpload').closest('div').removeClass('pulse');
+                                $('#cateUpload').closest('div').addClass('pulse');
+
+                                for (i = 0; i < row0.length; i++) {
+                                    var str = '';
+        
+                                    str = "<tr>" + 
+                                            "<th class='col s3' data-val='"+row0[i]+"'>"+row0[i]+"</th>"+
+                                            "<td class='col s9'>"+
+                                                "<div class='input-field col s8'>"+
+                                                    "<input type='text' class='validate val' data-val='"+row0[i]+"' value='"+endrow[i]+"'/>"+
+                                                "</div>"+
+                                                "<div class='input-field col s4 div-option'>" +
+                                                    "<select class='option-val browser-default' id='floatingSelect"+i+"' >"+
+                                                        "<option selected value='0'>Default</option>"+
+                                                        "<option value='1'>Auto increment</option>"+
+                                                        "<option value='2'>Number</option>"+
+                                                        "<option value='3'  "+ (row0[i] != "Images"? " disabled": "a")+">List Image</option>"+
+                                                        "<optgroup label='Text'>"+
+                                                            "<option value='4'>Short text</option>"+
+                                                            "<option value='5'>Nomal text</option>"+
+                                                            "<option value='6'>Long text</option>"+
+                                                        "</optgroup>"+
+                                                        "<optgroup label='Categories'>"+
+                                                            "<option value='7'>List Categories</option>"+
+                                                            "<option value='8'>Auto Categories</option>"+
+                                                        "</optgroup>"+
+                                                    "</select>"+
+                                                    "<div class='hide rand-num'>"+
+                                                        "<div class='input-field col s6'>"+
+                                                            "<input placeholder='From' type='text' class='validate from'>"+
+                                                        "</div>"+
+                                                        "<div class='input-field col s6'>"+
+                                                            "<input placeholder='To'type='text' class='validate to'>"+
+                                                        "</div>"+
+                                                    "</div>"+
+                                                    "<div class='hide num-cate'>"+
+                                                        "<div class='input-field col s12'>"+
+                                                            "<input placeholder='Number of categories' type='text' class='validate num'>"+
+                                                        "</div>"+
+                                                    "</div>"+
+                                                "</td>"+
+                                            "</tr>";
+                                    $('#tableData').append(str); 
+                                    if (i == 0) {
+                                        $('#sectionData').removeClass('hide').fadeIn('slow');
+                                    }
+                                } 
+                            }   
+                            $('select').formSelect(); 
+                        }     
+                    } else {
+                        alert("This browser does not support HTML5.");
+                    } 
+                } else {
+                    alert("Please upload a valid CSV file.");
+                }
+                
+             }
+
+            function download(url, filename) {
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
+
+            function progressLoad () {
+                width = 0;
+                $('.progress').removeClass('hide');
+                while(width < 100) {
+                    width += 0.1;
+                    $('#progress').css('width', width + '%');
+                }
+            }
+
+            $("#imgUpload").change(function () {
+                if (typeof (FileReader) != "undefined") {
+                    var imgShow = $("#imgShow");
+                    imgShow.html("");
+                    var regex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
+                    $($(this)[0].files).each(function () {
+                        var file = $(this);
+                        if (regex.test(file[0].name)) {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                var str = "<div class='col s2'>"+
+                                                "<img src='"+ e.target.result +"'  class='responsive-img'" +
+                                                    "data-namevi='"+ file[0].name.split('.')[0] +"'"+
+                                                    "data-url='"+ (formatText(file[0].name.split('.')[0]) + '.' + file[0].name.split('.')[1]) +"'"+
+                                                "/>"+
+                                            "</div>"
+                                imgShow.append(str);
+                            }
+                            reader.readAsDataURL(file[0]);
+                            $('#imgUpload').closest('div').removeClass('pulse');
+                            $('#generateCSV').addClass('animation');
+                        } else {
+                            alert(file[0].name + " is not a valid image file.");
+                            imgShow.html("");
+                            return false;
+                        }
+                    });
+                } else {
+                    alert("This browser does not support HTML5 FileReader.");
+                }
+            });
+    
+            $("#fileUpload, #cateUpload").bind("change", function () {
+                readFile($(this));
+            });
+
+            $(document).on('change', '.option-val', function () {
+                val = $(this).val();
+                if (val == '2') {
+                    $(this).closest('div').find('.rand-num').removeClass('hide');
+                    $(this).closest('div').find('.num-cate').addClass('hide');
+                } else if (val == '7' || val == '8') {
+                    $(this).closest('div').find('.num-cate').removeClass('hide');
+                    $(this).closest('div').find('.rand-num').addClass('hide');
+                } else {
+                    $(this).closest('div').find('.rand-num').addClass('hide');
+                    $(this).closest('div').find('.num-cate').addClass('hide');
+                }
+            })
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="file-field input-field">
+            <div class="btn waves-effect  pulse light-blue accent-4">
+                <span>CSV File</span>
+                <input id="fileUpload" type="file">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
+        </div>
+        <div class="file-field input-field">
+            <div class="btn waves-effect light-blue accent-4">
+            <span>Categories File</span>
+            <input id="cateUpload" type="file">
+        </div>
+        <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+        </div>
+        <ul id="categories" class="collection hide">
+            <!-- append categories here  -->
+        </ul>
+
+        </div>
+        <div class="file-field input-field">
+            <div class="btn waves-effect light-blue accent-4">
+            <span>Image File</span>
+            <input id="imgUpload" type="file" multiple>
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+        </div>
+        <div class="row">
+            <div class="col" id="imgShow">
+                <!-- show img here  -->
+            </div>
+        </div>
+            
+        <div id="sectionData" class="row hide">
+            <div class="col s6">
+                <h5>Enter number of row: </h5>
+                <input id="numRow" class="" type="number" id="test5" min="0" step="5"/>
+            </div>
+            <div class="col s5">
+                <button id="generateCSV" class="col s12 waves-effect  btn-large pink accent-3">GENERATE CSV</button>
+            </div>
+            <div  class="progress">
+                <div id="progress" class="determinate" style="width: 0%"></div>
+            </div>
+            <table class="striped">
+                <tbody id="tableData">
+                    <!-- append row here  -->
+                </tbody>
+            </table>
+        </div>
+    </div>         
+</body>
+</html>
