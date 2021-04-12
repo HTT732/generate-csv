@@ -253,7 +253,8 @@
                                 break;
                                
                             case '3': 
-                                item.push(obj.url[rand]);
+								randNum = random('number', 0, obj.url.length);
+                                item.push(obj.url[randNum]);
                                 break;
                             case '4':
                                 item.push(random('short-text'));
